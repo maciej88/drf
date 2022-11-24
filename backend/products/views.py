@@ -18,7 +18,12 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         # serializer.save(user)
-        pass
+        title = serializer.validated_data.get('title')
+        content = serializer.validated_data.get('content') or None
+        if content is None:
+            content = title
+        serializer.save(content=content)
+        #send signal Django
 
 product_list_create_view = ProductListCreateAPIView.as_view()
 
@@ -43,7 +48,7 @@ def product_alt_view(request, pk=None, *args, **kwargs):
 
     if method == "POST":
         serializer = ProductSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True)
+        if serializer.is_valid(raise_exception=True):
             title = serializer.validated_data.get('title')
             content = serializer.validated_data.get('content') or None
             if content is None:
