@@ -8,8 +8,18 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     serializer_class = ProductSerializer
 
 product_detail_view = ProductDetailAPIView.as_view()
-class ProductCreateAPIView(generics.CreateAPIView):
+class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-product_create_view = ProductCreateAPIView.as_view()
+    def perform_create(self, serializer):
+        # serializer.save(user)
+        pass
+
+product_list_create_view = ProductCreateAPIView.as_view()
+
+class ProductListAPIView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+product_list_view = ProductDetailAPIView.as_view()
