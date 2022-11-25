@@ -17,6 +17,9 @@ class ProductMixinView(
     lookup_field = 'pk'
 
     def get(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        if pk is not None:
+            return self.retrieve(request, *args, **kwargs)
         return self.list(request, *args, **kwargs)
 
 product_mixin_view = ProductMixinView.as_view()
