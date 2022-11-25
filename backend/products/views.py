@@ -25,11 +25,14 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
 
 product_update_view = ProductUpdateAPIView.as_view()
 
-class ProductDetailAPIView(generics.RetrieveAPIView):
+class ProductDeleteAPIView(generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-product_detail_view = ProductDetailAPIView.as_view()
+    def perform_destroy(self, instance):
+        super().perform_destroy(instance)
+
+product_delete_view = ProductDeleteAPIView.as_view()
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
