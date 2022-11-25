@@ -8,6 +8,7 @@ from .models import Product
 from .serializers import ProductSerializer
 
 class ProductMixinView(
+
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
     generics.GenericAPIView
