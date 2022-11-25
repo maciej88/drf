@@ -12,11 +12,12 @@ class ProductMixinView(
     generics.GenericAPIView
     ):
     queryset = Product.objects.all()
-    serializer = ProductSerializer
+    serializer_class = ProductSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
+product_mixin_view = ProductMixinView.as_view()
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
