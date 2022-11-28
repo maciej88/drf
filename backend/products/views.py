@@ -1,13 +1,11 @@
-from rest_framework import authentication, generics, mixins, permissions
+from rest_framework import generics, mixins, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from django.shortcuts import get_object_or_404
 
-from api.authentication import TokenAuthentication
-
 from .models import Product
-from .permissions import IsStaffEditorPermission
+from backend.api.permissions import IsStaffEditorPermission
 from .serializers import ProductSerializer
 
 class ProductMixinView(
