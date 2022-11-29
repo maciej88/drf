@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 from .models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -16,7 +17,12 @@ class ProductSerializer(serializers.ModelSerializer):
         ]
 
     def get_url(self, obj):
-        return f"/api/products/{obj.pk}/"
+        #return f"/api/products/{obj.pk}/"
+        request = self.context.get('request')
+        if request is None:
+            return None
+        return reverse("product-detail", kwargs={"pk": obj.pk}, request=request)
+
     # def get_my_discount(self, obj):
     #     if not hasattr(obj, 'id'):
     #         return None
