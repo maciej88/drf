@@ -23,11 +23,15 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale_price'
         ]
 
-    def create(self, validated_data):
-        #return Product.objects.create(**validated_data)
-        # email = validated_data.pop('email')
-        obj = super().create(validated_data)
-        return obj
+    # def create(self, validated_data):
+    #     #return Product.objects.create(**validated_data)
+    #     # email = validated_data.pop('email')
+    #     obj = super().create(validated_data)
+    #     return obj
+    #
+    # def update(self, instance, validated_data):
+    #     instance.title = validated_data.get('email')
+    #     return instance
 
     def get_edit_url(self, obj):
         #return f"/api/products/{obj.pk}/"
