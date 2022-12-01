@@ -22,6 +22,12 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale_price'
         ]
 
+    def validate_title(self, value):
+        qs = Product.objects.filter(title__exact=value)
+        if qs.exists():
+            raise serializers.ValidationError(f"{value} is already a product name")
+        return value
+
     # def create(self, validated_data):
     #     #return Product.objects.create(**validated_data)
     #     # email = validated_data.pop('email')
