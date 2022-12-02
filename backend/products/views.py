@@ -81,6 +81,12 @@ class ProductListCreateAPIView(
         serializer.save(content=content)
         #send signal Django
 
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        print(request.user)
+        return super().get_queryset(*args, **kwargs)
+
+
 product_list_create_view = ProductListCreateAPIView.as_view()
 
 class ProductListAPIView(
