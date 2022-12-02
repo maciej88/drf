@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 
 # from backend.api.authentication import TokenAuthentication
 #from backend.api.mixins import StaffEditorPermissionMixin
-
+from ..api.mixins import UserQuerysetMixin
 from .models import Product
 # from backend.api.permissions import IsStaffEditorPermission
 from .serializers import ProductSerializer
@@ -65,6 +65,7 @@ class ProductDeleteAPIView(
 
 product_delete_view = ProductDeleteAPIView.as_view()
 class ProductListCreateAPIView(
+    UserQuerysetMixin,
     # StaffEditorPermissionMixin,
     generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -81,10 +82,11 @@ class ProductListCreateAPIView(
         serializer.save(content=content)
         #send signal Django
 
-    def get_queryset(self, *args, **kwargs):
-        request = self.request
-        print(request.user)
-        return super().get_queryset(*args, **kwargs)
+    # def get_queryset(self, *args, **kwargs):
+    #     qs = super().get_queryset(*args, **kwargs)
+    #     request = self.request
+    #     print(request.user)
+    #     return qs.filter(user = request.user)
 
 
 product_list_create_view = ProductListCreateAPIView.as_view()
