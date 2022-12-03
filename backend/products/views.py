@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 
 # from backend.api.authentication import TokenAuthentication
 #from backend.api.mixins import StaffEditorPermissionMixin
-from ..api.mixins import UserQuerysetMixin
+# from api.mixins import UserQuerysetMixin
 from .models import Product
 # from backend.api.permissions import IsStaffEditorPermission
 from .serializers import ProductSerializer
@@ -65,7 +65,7 @@ class ProductDeleteAPIView(
 
 product_delete_view = ProductDeleteAPIView.as_view()
 class ProductListCreateAPIView(
-    UserQuerysetMixin,
+    # UserQuerysetMixin,
     # StaffEditorPermissionMixin,
     generics.ListCreateAPIView):
     queryset = Product.objects.all()

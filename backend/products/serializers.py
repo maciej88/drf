@@ -3,8 +3,11 @@ from rest_framework.reverse import reverse
 from .models import Product
 from .validators import *
 
+from api.serializers import UserPublicSerializer
+
 class ProductSerializer(serializers.ModelSerializer):
     # my_discount = serializers.SerializerMethodField(read_only=True)
+    user = UserPublicSerializer(read_only = True)
     edit_url = serializers.SerializerMethodField(read_only=True)
     url = serializers.HyperlinkedIdentityField(
         view_name='product-detail',
