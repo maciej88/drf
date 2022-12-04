@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.db import Q
+from django.db.models import Q
 # Create your models here.
 
 User = settings.AUTH_USER_MODEL
