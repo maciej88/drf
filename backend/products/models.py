@@ -13,7 +13,8 @@ class ProductQuerySet(models.QuerySet):
         lookup = Q(title__icontains=query) | Q(content__icontains=query)
         qs = self.is_public().filter(lookup)
         if user is not None:
-            qs = qs.filter(user=user)
+            qs2 = self.filter(user=user).filter(lookup)
+            qs = (qs | qs2).distinct()
         return qs
 
 class ProductManager(models.Manager):
@@ -28,6 +29,8 @@ class Product(models.Model):
     content = models.TextField(blank=True)
     price = models.DecimalField(max_digits=15, decimal_places=2, default= 99.99)
     public = models.BooleanField(default=True)
+
+    objects = ProductManager()
 
     @property
     def sale_price(self):
