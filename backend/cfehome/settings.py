@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'api',
     'products',
     'search',
+    'algoliasearch_django',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         "rest_framework.authentication.IsAuthenticatedOrReadOnly"
 #     ]
 # }
+ALGOLIA = {
+    'APPLICATION_ID': config("APPLICATION_ID"),
+    'API_KEY': config("API_KEY"),
+    "INDEX_PREFIX": 'cfe'
+}
