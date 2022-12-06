@@ -5,6 +5,7 @@ from .models import Product
 
 @register(Product)
 class ProductIndex(AlgoliaIndex):
+    schould_index = 'is_public'
     fields = [
         'title',
         'content',
