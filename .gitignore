@@ -1,2 +1,8 @@
 /backend/cfehome/.env
 /venv
+/backend/api/__pycache__/*
+/backend/cfehome/__pycache__/*
+/backend/products/__pycache__/*
+/backend/search/__pycache__/*
+/backend/search/migrations/__pycache__/*
+/backend/db.sqlite3
