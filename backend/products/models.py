@@ -37,6 +37,10 @@ class Product(models.Model):
 
     objects = ProductManager()
 
+    @property
+    def body(self):
+        return self.content
+
     def is_public(self) -> bool:
         return self.public # return true or false
 
