@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'products',
     'search',
     'algoliasearch_django',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -135,11 +136,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
 #     "PAGE_SIZE": 10
 # }
-# REST_FRAMEWORK = {
-#     "DEFAULT_AUTHENTICATION_CLASSES": [
-#         "rest_framework.authentication.SessionAuthentication",
-#         "api.authentication.TokenAuthentication"
-#     ],
+REST_FRAMEWORK = {
+     "DEFAULT_AUTHENTICATION_CLASSES": [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+     ]
+         
+ }
 #     "DEFAULT_PERMISSION_CLASSES": [
 #         "rest_framework.authentication.IsAuthenticatedOrReadOnly"
 #     ]
